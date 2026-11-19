@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="100%" height="100%">
+  <defs>
+    <radialGradient id="newBg" cx="30%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#FFF8EE" />
+      <stop offset="60%" stop-color="#F2E1C9" />
+      <stop offset="100%" stop-color="#E2CCA8" />
+    </radialGradient>
+    <linearGradient id="goldVein" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E6C47A" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#C69E4A" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#9E7628" stop-opacity="0.8" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="250" fill="url(#newBg)" />
+  <!-- Liquid Gold Swirl Marbling -->
+  <path d="M120,250 C180,180 240,240 320,150 C360,100 370,120 400,60" fill="none" stroke="url(#goldVein)" stroke-width="12" opacity="0.75" />
+  <path d="M140,250 C200,190 260,250 340,160 C380,110 390,130 400,80" fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.6" />
+  <path d="M200,250 C240,190 320,220 380,130" fill="none" stroke="url(#goldVein)" stroke-width="6" opacity="0.6" />
+</svg>
+

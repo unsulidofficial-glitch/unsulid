@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#FDFBF7" />
+      <stop offset="70%" stop-color="#F2E8DC" />
+      <stop offset="100%" stop-color="#E5D8C7" />
+    </radialGradient>
+    <linearGradient id="goldCap" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#A68442" />
+      <stop offset="35%" stop-color="#E2CA97" />
+      <stop offset="50%" stop-color="#FFF5DE" />
+      <stop offset="70%" stop-color="#C6A15B" />
+      <stop offset="100%" stop-color="#8A6726" />
+    </linearGradient>
+    <linearGradient id="glassBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9" />
+      <stop offset="20%" stop-color="#F8F1E7" stop-opacity="0.6" />
+      <stop offset="70%" stop-color="#EADDCB" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#DBC7AF" stop-opacity="0.9" />
+    </linearGradient>
+    <linearGradient id="liquidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F7EEDB" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#E4CDA8" stop-opacity="0.9" />
+    </linearGradient>
+    <filter id="bottleShadow" x="-20%" y="-10%" width="140%" height="130%">
+      <feDropShadow dx="0" dy="25" stdDeviation="20" flood-color="#0B0B0B" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="600" height="800" fill="url(#bgGrad)" />
+
+  <!-- Pedestal Line -->
+  <ellipse cx="300" cy="650" rx="200" ry="24" fill="#0B0B0B" opacity="0.08" />
+
+  <!-- Perfume Flacon Group -->
+  <g filter="url(#bottleShadow)">
+    <!-- Sprayer Collar -->
+    <rect x="270" y="270" width="60" height="25" rx="3" fill="url(#goldCap)" />
+
+    <!-- Cap -->
+    <rect x="250" y="195" width="100" height="75" rx="5" fill="url(#goldCap)" />
+    <!-- Cap detail line -->
+    <line x1="250" y1="232" x2="350" y2="232" stroke="#684E1C" stroke-width="1.5" opacity="0.4" />
+
+    <!-- Main Glass Body -->
+    <rect x="180" y="295" width="240" height="320" rx="16" fill="url(#glassBody)" stroke="#E6D9C9" stroke-width="2" />
+
+    <!-- Glass Wall Inner Thickness -->
+    <rect x="200" y="315" width="200" height="280" rx="10" fill="url(#liquidGrad)" />
+
+    <!-- Glass Highlight Reflection -->
+    <path d="M 195 315 L 210 315 L 205 580 L 195 580 Z" fill="#FFFFFF" opacity="0.6" />
+    <path d="M 390 315 L 405 315 L 400 580 L 390 580 Z" fill="#FFFFFF" opacity="0.3" />
+
+    <!-- Perfume Label Plaque -->
+    <rect x="220" y="380" width="160" height="150" rx="4" fill="#FDFBF7" stroke="#C6A15B" stroke-width="1.5" />
+
+    <!-- Brand Typography on Label -->
+    <text x="300" y="420" font-family="'Cormorant Garamond', Georgia, serif" font-size="14" font-weight="600" letter-spacing="4" fill="#5B0F18" text-anchor="middle">UNSULID</text>
+    <line x1="260" y1="432" x2="340" y2="432" stroke="#C6A15B" stroke-width="0.75" />
+    <text x="300" y="465" font-family="'Cormorant Garamond', Georgia, serif" font-size="22" font-weight="600" letter-spacing="2" fill="#0B0B0B" text-anchor="middle">HIGH CLASS</text>
+    <text x="300" y="490" font-family="'Manrope', sans-serif" font-size="9" font-weight="500" letter-spacing="2" fill="#8B8178" text-anchor="middle">EAU DE PARFUM</text>
+    <text x="300" y="505" font-family="'Manrope', sans-serif" font-size="8" font-weight="400" letter-spacing="1.5" fill="#8B8178" text-anchor="middle">EVERYDAY SIGNATURE</text>
+  </g>
+
+  <!-- Editorial Subtext Badge -->
+  <text x="300" y="730" font-family="'Manrope', sans-serif" font-size="11" font-weight="600" letter-spacing="3" fill="#5B0F18" text-anchor="middle">DAYTIME SIGNATURE</text>
+</svg>
+

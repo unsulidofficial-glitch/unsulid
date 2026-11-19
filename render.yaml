@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: unsulid-backend-api
+    runtime: node
+    rootDir: apps/api
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: FRONTEND_URL
+        sync: false
+      - key: OTP_PROVIDER
+        value: console
+      - key: INITIAL_ADMIN_EMAIL
+        value: admin@unsulid.com
+      - key: INITIAL_ADMIN_PASSWORD
+        value: Admin@Unsulid2026!
+
