@@ -5,6 +5,7 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { DbStoreService, ProductRecord } from '@/database/db-store.service';
+import { ShiprocketService } from '@/modules/shipping/shiprocket.service';
 import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto';
 import {
@@ -22,7 +23,10 @@ import {
 
 @Injectable()
 export class AdminService {
-  constructor(private readonly store: DbStoreService) {}
+  constructor(
+    private readonly store: DbStoreService,
+    private readonly shiprocketService: ShiprocketService
+  ) {}
 
   async login(dto: AdminLoginDto) {
     const admin = this.store.adminUsers.find(
@@ -576,6 +580,9 @@ export class AdminService {
       order.notes = dto.notes;
     }
     order.updatedAt = new Date();
+
+    // Synchronize real-time tracking events and Amazon/Flipkart checkpoints
+    this.shiprocketService.syncTrackingEventsForStatus(order, dto.orderStatus);
 
     this.store.logAdminAction(
       adminEmail,

@@ -121,7 +121,22 @@ export interface OrderRecord {
     courierName?: string;
     status: string;
     pickupLocation: string;
-    trackingEvents: { status: string; activity: string; location?: string; timestamp: Date }[];
+    estimatedDelivery?: string;
+    deliveryOtp?: string;
+    deliveryAssociate?: {
+      name: string;
+      phone: string;
+      courier: string;
+    };
+    currentMilestoneIndex?: number;
+    trackingEvents: {
+      status: string;
+      activity: string;
+      location?: string;
+      timestamp: Date;
+      isCompleted?: boolean;
+      isActive?: boolean;
+    }[];
   };
   createdAt: Date;
   updatedAt: Date;
@@ -381,6 +396,117 @@ export class DbStoreService implements OnModuleInit {
         isActive: true,
       },
     ];
+
+    // 4. Initial Seed Order (UNS-2026-1001) for Real-Time Tracking Demo
+    const orderCreatedAt = new Date(Date.now() - 20 * 60 * 60 * 1000);
+    this.orders.push({
+      id: 'ord_bfe31e2a-1e0a-4609-9ee0-8bdb3e88fc2c',
+      orderNumber: 'UNS-2026-1001',
+      userId: 'usr_rajesh',
+      orderStatus: 'OUT_FOR_DELIVERY',
+      paymentStatus: 'PENDING',
+      paymentMethod: 'COD',
+      customerSnapshot: {
+        name: 'Rajesh Kumar',
+        phone: '9568845314',
+        email: 'rajesh@unsulid.com',
+      },
+      addressSnapshot: {
+        fullName: 'Rajesh Kumar',
+        phone: '9568845314',
+        houseBuilding: 'Flat 402, Royal Palms Residency',
+        streetLocality: 'Ring Road, Near City Center',
+        city: 'Surat',
+        state: 'Gujarat',
+        pinCode: '395007',
+        deliveryInstructions: 'Fragrance batch. Please handle with care.',
+      },
+      items: [
+        {
+          productId: 'prod_high_class',
+          productName: 'HIGH CLASS',
+          productSku: 'HIGH-CLASS-50ML',
+          unitPrice: 1499,
+          mrp: 2499,
+          quantity: 1,
+          subtotal: 1499,
+          image: '/images/products/high-class-front.jpg',
+        },
+      ],
+      subtotal: 1499,
+      discountTotal: 0,
+      shippingFee: 0,
+      codFee: 50,
+      grandTotal: 1549,
+      shipment: {
+        awbNumber: 'AWB848319763',
+        courierName: 'Delhivery Surface',
+        status: 'OUT_FOR_DELIVERY',
+        pickupLocation: 'UNSULID_SURAT',
+        estimatedDelivery: 'Today by 7:00 PM',
+        deliveryOtp: '4821',
+        deliveryAssociate: {
+          name: 'Vikram Sharma',
+          phone: '+91 98721 04412',
+          courier: 'Delhivery Surface',
+        },
+        currentMilestoneIndex: 3,
+        trackingEvents: [
+          {
+            status: 'ORDER_PLACED',
+            activity: 'Order confirmed and verified at UNSULID Concierge',
+            location: 'Surat, Gujarat',
+            timestamp: new Date(orderCreatedAt.getTime()),
+            isCompleted: true,
+          },
+          {
+            status: 'PACKED',
+            activity: 'Fragrance batch hand-packed and inspected in climate-controlled vault',
+            location: 'Surat Fragrance Facility',
+            timestamp: new Date(orderCreatedAt.getTime() + 15 * 60 * 1000),
+            isCompleted: true,
+          },
+          {
+            status: 'AWB_GENERATED',
+            activity: 'Airway bill AWB848319763 generated with Delhivery Surface',
+            location: 'Surat Logistics Hub',
+            timestamp: new Date(orderCreatedAt.getTime() + 30 * 60 * 1000),
+            isCompleted: true,
+          },
+          {
+            status: 'SHIPPED',
+            activity: 'Dispatched from Surat Logistics Hub via line-haul express to Surat Delivery Center',
+            location: 'Surat Express Line-Haul Terminal, Gujarat',
+            timestamp: new Date(orderCreatedAt.getTime() + 2 * 60 * 60 * 1000),
+            isCompleted: true,
+          },
+          {
+            status: 'IN_TRANSIT',
+            activity: 'Arrived at National Transit Transshipment Hub & automated sorting complete',
+            location: 'Regional Hub, Western Logistics Corridor',
+            timestamp: new Date(orderCreatedAt.getTime() + 6 * 60 * 60 * 1000),
+            isCompleted: true,
+          },
+          {
+            status: 'REACHED_CITY',
+            activity: 'Package received at destination city delivery center (395007)',
+            location: 'Surat Logistics Hub, Gujarat',
+            timestamp: new Date(orderCreatedAt.getTime() + 14 * 60 * 60 * 1000),
+            isCompleted: true,
+          },
+          {
+            status: 'OUT_FOR_DELIVERY',
+            activity: 'Out for delivery! Courier delivery executive (Vikram Sharma) has departed with your package',
+            location: 'Surat Delivery Center — Delivering to Rajesh Kumar',
+            timestamp: new Date(Date.now() - 35 * 60 * 1000),
+            isCompleted: true,
+            isActive: true,
+          },
+        ],
+      },
+      createdAt: orderCreatedAt,
+      updatedAt: new Date(),
+    });
 
     this.logger.log(
       `✨ Seeded default store data (2 Products, 2 Admin Users, 2 Coupons, Default Settings).`
